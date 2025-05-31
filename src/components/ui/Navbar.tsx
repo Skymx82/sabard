@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
         <Link href="/" className="flex items-center">
           <div className="relative h-10 w-32">
             <Image 
-              src="/logo-sabard.svg" 
+              src="/logo-sabard.jpg" 
               alt="SABARD Bâtiment" 
               width={120} 
               height={40} 
