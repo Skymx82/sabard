@@ -1,11 +1,26 @@
-import React, { Suspense, useEffect, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { Suspense, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
 import { PerspectiveCamera, Environment, OrbitControls } from '@react-three/drei';
 import SketchfabModel from './SketchfabModel';
+import LoadingSpinner from '../ui/LoadingSpinner';
 
 const HeroScene: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fonction pour gérer la fin du chargement du modèle
+  const handleModelLoaded = () => {
+    setIsLoading(false);
+  };
+
   return (
     <div className="w-full h-[70vh] relative">
+      {/* Affichage du spinner de chargement tant que le modèle n'est pas chargé */}
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-10">
+          <LoadingSpinner />
+        </div>
+      )}
+
       <Canvas shadows dpr={[1, 2]}>
         <PerspectiveCamera makeDefault position={[8, 8, 14]} fov={30} />
         <color attach="background" args={['#f8f9fa']} />
@@ -29,8 +44,9 @@ const HeroScene: React.FC = () => {
           <SketchfabModel 
             modelPath="/model.glb" 
             scale={0.3} 
-            position={[-1, 0, -0.7]} 
-          />
+            position={[-1, 0, -0.7]}
+            onLoad={handleModelLoaded}
+          />          
           <Environment preset="city" />
         </Suspense>
         
