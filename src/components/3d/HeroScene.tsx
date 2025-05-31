@@ -1,6 +1,6 @@
-import React, { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, PerspectiveCamera, useGLTF } from '@react-three/drei';
+import React, { Suspense, useEffect, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { PerspectiveCamera, Environment, OrbitControls } from '@react-three/drei';
 import SketchfabModel from './SketchfabModel';
 
 const HeroScene: React.FC = () => {
@@ -29,7 +29,7 @@ const HeroScene: React.FC = () => {
           <SketchfabModel 
             modelPath="/model.glb" 
             scale={0.3} 
-            position={[-1.5, 1, -2]} 
+            position={[-1, 0, -0.7]} 
           />
           <Environment preset="city" />
         </Suspense>

@@ -87,8 +87,13 @@ const Hero: React.FC = () => {
         }}
       />
       
-      {/* Scène 3D uniquement à droite, positionée plus bas */}
+      {/* Scène 3D uniquement à droite sur desktop */}
       <div className="absolute top-[10%] bottom-0 right-0 w-1/2 z-0 hidden md:block">
+        <HeroScene />
+      </div>
+      
+      {/* Version mobile du modèle 3D */}
+      <div className="absolute top-90 bottom-0 left-0 w-full h-[60vh] z-0 block md:hidden">
         <HeroScene />
       </div>
     </section>
